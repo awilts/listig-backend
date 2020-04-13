@@ -7,8 +7,8 @@ data class Message(val text: String, val priority: String)
 
 @RestController
 class MessageController {
-    @RequestMapping("/message")
+    @RequestMapping("/backend/message")
     fun message(): Message {
-        return Message("Hello from Alex", "High")
+        return Message("Hello from Dat Boi", "High")
     }
 }
