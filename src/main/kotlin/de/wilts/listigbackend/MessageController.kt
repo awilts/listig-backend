@@ -1,10 +1,13 @@
 package de.wilts.listigbackend
 
-import com.google.cloud.datastore.Datastore
-import com.google.cloud.datastore.DatastoreOptions
-import com.google.cloud.datastore.Entity
-import com.google.cloud.datastore.Key
+import com.google.auth.oauth2.ServiceAccountCredentials
+import com.google.cloud.ServiceOptions
+import com.google.cloud.firestore.Firestore
+import com.google.firebase.FirebaseApp
+import com.google.firebase.FirebaseOptions
+import com.google.firebase.cloud.FirestoreClient
 import org.springframework.web.bind.annotation.*
+
 
 @RequestMapping("/backend")
 @RestController
@@ -17,23 +20,18 @@ class MessageController {
     fun postItems(@RequestBody item: Item) {
         println(item)
         items.add(item)
+        val projectId: String = ServiceOptions.getDefaultProjectId()
+        println("id:$projectId")
 
-        val kind = "itemKind"
-        val name = "itemKeyName"
-        val taskKey: Key = datastore.newKeyFactory().setKind(kind).newKey(name)
-
-        val task: Entity = Entity.newBuilder(taskKey)
-                .set("messageId", item.messageId)
-                .set("myid", item.userId)
-                .set("groupId", item.groupId)
-                .set("text", item.text)
+        val credentials = ServiceAccountCredentials.getApplicationDefault()
+//        val secret = accessSecretVersion("composed-falcon-273907", "project-id", "1")
+        val options: FirebaseOptions = FirebaseOptions.Builder()
+                .setCredentials(credentials)
+                .setProjectId(projectId)
                 .build()
-
-        datastore.put(task)
-        System.out.printf("Saved %s: %s%n", task.key.name, task.getString("description"))
-
-        val retrieved = datastore[taskKey]
-        System.out.printf("Retrieved %s: %s%n", taskKey.name, retrieved.getString("description"))
+        FirebaseApp.initializeApp(options)
+        val db: Firestore = FirestoreClient.getFirestore()
+        db.collection("items").add(item);
     }
 
     @GetMapping("/items")
@@ -41,7 +39,4 @@ class MessageController {
         println(items)
         return items
     }
-
-    val datastore: Datastore = DatastoreOptions.getDefaultInstance().service
-
 }
