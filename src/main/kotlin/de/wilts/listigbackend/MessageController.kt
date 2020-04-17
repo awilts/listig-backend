@@ -24,7 +24,6 @@ class MessageController {
         println("id:$projectId")
 
         val credentials = ServiceAccountCredentials.getApplicationDefault()
-//        val secret = accessSecretVersion("composed-falcon-273907", "project-id", "1")
         val options: FirebaseOptions = FirebaseOptions.Builder()
                 .setCredentials(credentials)
                 .setProjectId(projectId)
