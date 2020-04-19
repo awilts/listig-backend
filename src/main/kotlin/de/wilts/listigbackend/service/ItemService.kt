@@ -1,5 +1,7 @@
-package de.wilts.listigbackend
+package de.wilts.listigbackend.service
 
+import de.wilts.listigbackend.data.Item
+import de.wilts.listigbackend.persistence.ItemRepository
 import org.reactivestreams.Publisher
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.context.ApplicationEvent

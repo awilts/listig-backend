@@ -1,5 +1,6 @@
-package de.wilts.listigbackend
+package de.wilts.listigbackend.web
 
+import de.wilts.listigbackend.service.ItemCreatedEvent
 import org.springframework.context.ApplicationListener
 import org.springframework.stereotype.Component
 import org.springframework.util.ReflectionUtils

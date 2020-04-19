@@ -1,4 +1,4 @@
-package de.wilts.listigbackend
+package de.wilts.listigbackend.data
 
 import com.google.cloud.firestore.annotation.DocumentId
 import org.springframework.cloud.gcp.data.firestore.Document
