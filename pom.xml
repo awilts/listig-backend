@@ -43,7 +43,7 @@
         </dependency>
         <dependency>
             <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-gcp-starter-data-firestore</artifactId>
+            <artifactId>spring-cloud-gcp-data-firestore</artifactId>
         </dependency>
 
         <dependency>

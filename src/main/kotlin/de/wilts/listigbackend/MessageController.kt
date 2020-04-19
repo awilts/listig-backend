@@ -6,17 +6,16 @@ import org.springframework.web.bind.annotation.*
 import reactor.core.publisher.Mono
 
 
-@RequestMapping("/backend")
 @RestController
-class MessageController(@Autowired var itemRepository: ItemRepository) {
+class MessageController(@Autowired var itemService: ItemService) {
 
-    @PostMapping("/items")
+    @PostMapping("/backend/items")
     fun postItems(@RequestBody item: Item): Mono<Item> {
-        return itemRepository.save(item)
+        return itemService.save(item)
     }
 
-    @GetMapping("/items")
+    @GetMapping("/ws/items")
     fun getItems(): Publisher<Item> {
-        return itemRepository.findAll()
+        return itemService.findAll()
     }
 }
