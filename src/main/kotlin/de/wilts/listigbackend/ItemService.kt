@@ -13,7 +13,7 @@ class ItemService(@Autowired var itemRepository: ItemRepository) {
         /** spring cloud gcp does currently not support creation of documents with auto generated ids,
             so we need to generate our own. This code should be removed once auto generated ids are implemented.
         */
-        if (item.messageId == null) {
+        if (item.messageId == "") {
             val uuid = UUID.randomUUID()
             val itemWithId = item.copy(messageId = uuid.toString())
             return itemRepository.save(itemWithId)
