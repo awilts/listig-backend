@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.context.ApplicationEvent
 import org.springframework.context.ApplicationEventPublisher
 import org.springframework.stereotype.Service
+import reactor.core.publisher.Flux
 import reactor.core.publisher.Mono
 import java.util.*
 
@@ -35,8 +36,12 @@ class ItemService {
 
     }
 
-    fun findAll(): Publisher<Item> {
+    fun findAll(): Flux<Item> {
         return itemRepository.findAll()
+    }
+
+    fun clear(): Mono<Void> {
+        return itemRepository.deleteAll()
     }
 }
 

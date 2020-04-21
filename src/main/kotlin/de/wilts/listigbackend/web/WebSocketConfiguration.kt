@@ -28,7 +28,6 @@ internal class WebSocketConfiguration {
         }
     }
 
-
     @Bean
     fun webSocketHandlerAdapter(): WebSocketHandlerAdapter {
         return WebSocketHandlerAdapter()

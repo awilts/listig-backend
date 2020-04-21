@@ -10,7 +10,6 @@ import org.springframework.web.reactive.function.server.ServerResponse
 import reactor.core.publisher.Mono
 import java.net.URI
 
-
 @Component
 class ItemHandler {
 
@@ -18,7 +17,8 @@ class ItemHandler {
     private lateinit var itemService: ItemService
 
     fun all(request: ServerRequest): Mono<ServerResponse> {
-        return ServerResponse.ok()
+        return ServerResponse
+                .ok()
                 .contentType(APPLICATION_JSON)
                 .body(itemService.findAll(), Item::class.java)
     }
@@ -33,5 +33,11 @@ class ItemHandler {
                             .contentType(APPLICATION_JSON)
                             .build()
                 }
+    }
+
+    fun clear(request: ServerRequest): Mono<ServerResponse>  {
+        return ServerResponse
+                .noContent()
+                .build( itemService.clear())
     }
 }
