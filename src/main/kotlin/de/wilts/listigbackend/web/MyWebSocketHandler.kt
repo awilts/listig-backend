@@ -15,9 +15,7 @@ class MyWebSocketHandler(eventPublisher: ItemCreatedEventPublisher) : WebSocketH
     override fun handle(session: WebSocketSession): Mono<Void> {
         val messageFlux = publish
                 .map { evt -> evt.source.toString() }
-                .map { str ->
-                    session.textMessage(str)
-                }
+                .map { str -> session.textMessage(str) }
         return session.send(messageFlux)
     }
 }
