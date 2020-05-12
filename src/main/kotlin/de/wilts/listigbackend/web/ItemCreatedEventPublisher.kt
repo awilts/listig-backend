@@ -20,6 +20,7 @@ class ItemCreatedEventPublisher(private val executor: Executor) : ApplicationLis
 
     override fun accept(sink: FluxSink<ItemCreatedEvent?>) {
         executor.execute {
+            //TODO: Replace with pub/sub
             while (true) try {
                 val event: ItemCreatedEvent = queue.take()
                 sink.next(event)

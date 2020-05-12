@@ -17,8 +17,10 @@ import java.util.*
 @Service
 class ItemService {
 
-    @Autowired private lateinit var itemRepository: ItemRepository
-    @Autowired private lateinit var publisher: ApplicationEventPublisher
+    @Autowired
+    private lateinit var itemRepository: ItemRepository
+    @Autowired
+    private lateinit var publisher: ApplicationEventPublisher
 
     suspend fun save(item: Item): Item {
         /** Spring cloud gcp does currently not support creation of documents with auto generated ids,
